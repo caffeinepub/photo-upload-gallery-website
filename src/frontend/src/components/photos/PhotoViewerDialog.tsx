@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import type { PhotoMetadata } from '../../backend';
 import {
   Dialog,
@@ -5,8 +6,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '../ui/dialog';
-import { Calendar, FileImage } from 'lucide-react';
+import { Button } from '../ui/button';
+import { Calendar, FileImage, Share2, Check } from 'lucide-react';
 import { ScrollArea } from '../ui/scroll-area';
+import { useCreateShortLink } from '../../hooks/useShortLinks';
+import { useUploadAuthorization } from '../../hooks/useUploadAuthorization';
+import { Alert, AlertDescription } from '../ui/alert';
 
 interface PhotoViewerDialogProps {
   photo: PhotoMetadata | null;
@@ -15,10 +20,39 @@ interface PhotoViewerDialogProps {
 }
 
 export function PhotoViewerDialog({ photo, open, onOpenChange }: PhotoViewerDialogProps) {
+  const [copySuccess, setCopySuccess] = useState(false);
+  const [copyError, setCopyError] = useState<string | null>(null);
+  const createShortLink = useCreateShortLink();
+  const { canUpload } = useUploadAuthorization();
+
   if (!photo) return null;
 
   const imageUrl = photo.blob.getDirectURL();
   const uploadDate = new Date(Number(photo.timestamp));
+
+  const handleCopyShareLink = async () => {
+    setCopySuccess(false);
+    setCopyError(null);
+
+    try {
+      // Create short link
+      const shortCode = await createShortLink.mutateAsync(photo.id);
+
+      // Build the share URL
+      const shareUrl = `${window.location.origin}/#s=${shortCode}`;
+
+      // Copy to clipboard
+      await navigator.clipboard.writeText(shareUrl);
+
+      // Show success message
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 3000);
+    } catch (error: any) {
+      console.error('Failed to copy share link:', error);
+      setCopyError(error.message || 'Failed to copy link. Please try again.');
+      setTimeout(() => setCopyError(null), 5000);
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -39,7 +73,7 @@ export function PhotoViewerDialog({ photo, open, onOpenChange }: PhotoViewerDial
             </div>
 
             {/* Metadata */}
-            <div className="space-y-3 text-sm">
+            <div className="space-y-3 text-sm mb-6">
               <div className="flex items-center gap-3 text-muted-foreground">
                 <Calendar className="w-4 h-4" />
                 <span>
@@ -61,6 +95,47 @@ export function PhotoViewerDialog({ photo, open, onOpenChange }: PhotoViewerDial
                 <span>{photo.contentType}</span>
               </div>
             </div>
+
+            {/* Share Link Section - Only show if user can upload (is admin) */}
+            {canUpload && (
+              <div className="border-t border-border/40 pt-4">
+                <Button
+                  onClick={handleCopyShareLink}
+                  disabled={createShortLink.isPending}
+                  variant="outline"
+                  className="w-full gap-2"
+                >
+                  {copySuccess ? (
+                    <>
+                      <Check className="w-4 h-4" />
+                      Link copied to clipboard
+                    </>
+                  ) : (
+                    <>
+                      <Share2 className="w-4 h-4" />
+                      {createShortLink.isPending ? 'Creating share link...' : 'Copy share link'}
+                    </>
+                  )}
+                </Button>
+
+                {/* Success/Error Messages */}
+                {copySuccess && (
+                  <Alert className="mt-3 border-green-500/50 bg-green-500/10">
+                    <AlertDescription className="text-green-700 dark:text-green-300">
+                      Share link copied! Anyone with this link can view this photo.
+                    </AlertDescription>
+                  </Alert>
+                )}
+
+                {copyError && (
+                  <Alert className="mt-3 border-destructive/50 bg-destructive/10">
+                    <AlertDescription className="text-destructive">
+                      {copyError}
+                    </AlertDescription>
+                  </Alert>
+                )}
+              </div>
+            )}
           </div>
         </ScrollArea>
       </DialogContent>

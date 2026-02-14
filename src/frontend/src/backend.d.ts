@@ -21,8 +21,28 @@ export interface PhotoMetadata {
     name: string;
     timestamp: bigint;
 }
+export interface UserProfile {
+    name: string;
+    email?: string;
+}
+export enum UserRole {
+    admin = "admin",
+    user = "user",
+    guest = "guest"
+}
 export interface backendInterface {
     addPhoto(id: string, name: string, contentType: string, timestamp: bigint, blob: ExternalBlob): Promise<void>;
+    addShortLink(id: string, shortCode: string): Promise<void>;
+    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    canUpload(): Promise<boolean>;
+    getCallerUserProfile(): Promise<UserProfile | null>;
+    getCallerUserRole(): Promise<UserRole>;
+    getGalleryStats(): Promise<[bigint, bigint]>;
     getPhoto(id: string): Promise<PhotoMetadata | null>;
+    getPhotoByShortCode(shortCode: string): Promise<PhotoMetadata | null>;
+    getUserProfile(user: Principal): Promise<UserProfile | null>;
+    isCallerAdmin(): Promise<boolean>;
     listPhotos(): Promise<Array<PhotoMetadata>>;
+    resolveShortLink(shortCode: string): Promise<string | null>;
+    saveCallerUserProfile(profile: UserProfile): Promise<void>;
 }

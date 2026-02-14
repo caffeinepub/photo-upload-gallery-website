@@ -18,6 +18,10 @@ export interface PhotoMetadata {
   'name' : string,
   'timestamp' : bigint,
 }
+export interface UserProfile { 'name' : string, 'email' : [] | [string] }
+export type UserRole = { 'admin' : null } |
+  { 'user' : null } |
+  { 'guest' : null };
 export interface _CaffeineStorageCreateCertificateResult {
   'method' : string,
   'blob_hash' : string,
@@ -45,12 +49,24 @@ export interface _SERVICE {
     _CaffeineStorageRefillResult
   >,
   '_caffeineStorageUpdateGatewayPrincipals' : ActorMethod<[], undefined>,
+  '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'addPhoto' : ActorMethod<
     [string, string, string, bigint, ExternalBlob],
     undefined
   >,
+  'addShortLink' : ActorMethod<[string, string], undefined>,
+  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'canUpload' : ActorMethod<[], boolean>,
+  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
+  'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getGalleryStats' : ActorMethod<[], [bigint, bigint]>,
   'getPhoto' : ActorMethod<[string], [] | [PhotoMetadata]>,
+  'getPhotoByShortCode' : ActorMethod<[string], [] | [PhotoMetadata]>,
+  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
+  'isCallerAdmin' : ActorMethod<[], boolean>,
   'listPhotos' : ActorMethod<[], Array<PhotoMetadata>>,
+  'resolveShortLink' : ActorMethod<[string], [] | [string]>,
+  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

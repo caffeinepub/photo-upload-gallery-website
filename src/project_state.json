@@ -1,15 +1,15 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
-  "summary": "Website for uploading and displaying photographs (simple photo gallery).",
+  "projectStateVersion": 11,
+  "summary": "Website for uploading and displaying photographs with restricted upload access (owner/admin can upload; public viewers can only browse the gallery).",
   "architectural_notes": [
-    "Homepage/landing visual direction: warm autumn sunset vibe (falling leaves), consistent across hero/background and overall theme."
+    "Homepage/landing visual direction: warm autumn sunset vibe (falling leaves), consistent across hero/background and overall theme.",
+    "Introduce simple access control/roles: uploader (authorized) vs viewer (public read-only)."
   ],
   "known_issues": [
     "Build failed due to a configuration problem (Caffeine build/config error)."
   ],
   "isFixRequest": false,
-  "imageRequirements": "## Edit Images\n- Convert the existing hero background to an autumn sunset with subtle falling leaves motif and warm grain (hero-collage-bg.dim_1600x900.png > hero-collage-bg.dim_1600x900.png)",
   "existing_features": [
     {
       "id": "feature-create-a-frontend-page-that-allows-users-to-upload-photographs-from-their-device-and-submit-them-to-the-backend-including-client-side-validation-for-common-image-types-e-g-jpeg-png-webp-and-a-clear-success-error-message-in-english",
@@ -106,6 +106,38 @@
         "REQ-13"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-frontend-so-public-visitors-can-browse-the-gallery-and-open-photos-but-cannot-see-or-use-the-upload-form-unless-they-are-authenticated-and-authorized-to-upload",
+      "title": "Update the frontend so public visitors can browse the gallery and open photos, but cannot see or use the upload form unless they are authenticated and authorized to upload.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-frontend-authentication-ui-controls-using-internet-identity-so-the-owner-can-sign-in-to-upload-and-non-owners-can-optionally-sign-in-but-still-remain-read-only-if-not-authorized",
+      "title": "Add frontend authentication UI controls using Internet Identity so the owner can sign in to upload, and non-owners can optionally sign in but still remain read-only if not authorized.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-copy-share-link-action-to-the-photo-viewer-that-generates-a-short-url-using-the-current-site-origin-plus-a-short-code-parameter-and-copies-it-to-the-clipboard-showing-a-clear-success-error-message-in-english",
+      "title": "Add a “Copy share link” action to the photo viewer that generates a short URL using the current site origin plus a short-code parameter and copies it to the clipboard, showing a clear success/error message in English.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enable-opening-a-photo-directly-from-a-short-link-by-detecting-the-short-code-parameter-on-initial-page-load-and-automatically-opening-the-corresponding-photo-in-the-existing-photo-viewer-dialog",
+      "title": "Enable opening a photo directly from a short link by detecting the short-code parameter on initial page load and automatically opening the corresponding photo in the existing photo viewer dialog.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -133,6 +165,42 @@
       "id": "AR-4",
       "summary": "Update the landing/homepage visual theme to evoke “falling autumn leaves at sunset time” (warm amber/orange palette and matching hero styling/background).",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Add access control so only authorized users can upload photos, while general frontend visitors can only view/browse the gallery (read-only).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Add backend access control so that only an authorized principal (the gallery owner/admin) can upload photos, while all visitors can still list and view photos.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Implement an owner/admin bootstrapping and authorization mechanism in the Motoko canister that supports a single owner by default (with an optional allowlist), and expose query methods needed by the frontend to determine whether the current caller is allowed to upload.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Support shortening the public link/URL for the site (e.g., via custom domain and/or short redirect link).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add backend support for short photo links by storing and resolving short codes that map to existing photo IDs.",
+      "reqIds": [
+        "REQ-18"
+      ],
       "status": "pending"
     }
   ],

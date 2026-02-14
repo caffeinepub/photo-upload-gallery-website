@@ -90,6 +90,15 @@ export function PhotoUploadForm() {
   const isSuccess = uploadMutation.isSuccess;
   const isError = uploadMutation.isError;
 
+  // Format error message to be user-friendly
+  const getErrorMessage = () => {
+    const errorMsg = uploadMutation.error?.message || '';
+    if (errorMsg.includes('Unauthorized') || errorMsg.includes('Only admins')) {
+      return 'You do not have permission to upload photos. Please sign in with the gallery owner account.';
+    }
+    return errorMsg || 'Failed to upload photo. Please try again.';
+  };
+
   return (
     <Card className="overflow-hidden border-border/60 shadow-warm">
       <CardContent className="p-6">
@@ -207,7 +216,7 @@ export function PhotoUploadForm() {
             <Alert variant="destructive">
               <AlertCircle className="h-4 w-4" />
               <AlertDescription>
-                {uploadMutation.error?.message || 'Failed to upload photo. Please try again.'}
+                {getErrorMessage()}
               </AlertDescription>
             </Alert>
           )}

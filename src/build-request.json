@@ -1,68 +1,85 @@
 {
   "kind": "build_request",
-  "title": "Update landing page theme to falling autumn leaves at sunset",
+  "title": "Add in-app short share links for photos",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-12",
-      "text": "Update the homepage visual theme to evoke “falling autumn leaves, sunset time” using a cohesive warm palette (amber/orange/copper/burgundy) and matching surfaces, borders, and accents across the landing header, hero, highlights, upload, gallery, dialogs, and footer while keeping all existing functionality unchanged.",
-      "target": "frontend",
+      "id": "REQ-18",
+      "text": "Add backend support for short photo links by storing and resolving short codes that map to existing photo IDs.",
+      "target": "backend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-6"
         ],
         "quotes": [
-          "Make the theme of the home page like “ falling of autumn leaves , sun set time “ kind of"
+          "Can I shorten link length"
         ]
       },
       "acceptanceCriteria": [
-        "No backend changes are required to achieve the theme update.",
-        "The overall app color system reads as warm autumn sunset (no blue/purple-forward palette).",
-        "Buttons, cards, alerts, borders, and hover states remain accessible with sufficient contrast in both light and dark mode.",
-        "Existing page structure and behaviors remain intact: header navigation scroll, hero CTAs scroll, upload flow, gallery list, and photo viewer dialog all still work."
+        "Backend exposes a method for an authorized admin to create (or retrieve if already created) a short code for a given photo ID.",
+        "Backend exposes a public query method that resolves a short code to the corresponding photo ID (or returns null/none if not found).",
+        "Short codes are significantly shorter than the original photo ID (e.g., base62 or similar) and are unique across photos.",
+        "All visitors (including unauthenticated) can resolve short codes to photo IDs, but only authorized admins can create new short codes.",
+        "If the backend uses stable state for persistence, the short-code mapping persists across canister upgrades (add migration logic only if required by existing stable layout)."
       ]
     },
     {
-      "id": "REQ-13",
-      "text": "Update the hero section styling to match the autumn-sunset theme by adjusting overlays/gradients and any hero text emphasis colors so the background and content feel like a warm sunset scene with drifting leaves, without changing the hero’s existing CTA behavior.",
+      "id": "REQ-19",
+      "text": "Add a “Copy share link” action to the photo viewer that generates a short URL using the current site origin plus a short-code parameter and copies it to the clipboard, showing a clear success/error message in English.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-6"
         ],
         "quotes": [
-          "Make the theme of the home page like “ falling of autumn leaves , sun set time “ kind of"
+          "Can I shorten link length"
         ]
       },
       "acceptanceCriteria": [
-        "Hero background overlay and gradients are updated to warm sunset tones (e.g., amber-to-burgundy) and do not wash out the headline/CTAs.",
-        "Hero headline, subheadline, and CTA buttons remain readable on common screen sizes.",
-        "CTA buttons still smooth-scroll to #upload-section and #gallery-section as they do currently."
+        "In the photo viewer dialog, a visible control labeled \"Copy share link\" is available when a photo is open.",
+        "Clicking the control requests/obtains a short code for that photo (only if the current user is authorized to do so) and copies a URL formatted like \"<origin>/#s=<shortCode>\" to the clipboard.",
+        "After copying, the UI shows an English confirmation message (e.g., \"Link copied to clipboard.\"); if copying fails, show an English error message.",
+        "If the user is not authorized to create short links, the UI does not offer the action (or it is disabled with an English explanation), and the rest of the viewer continues to work normally."
+      ]
+    },
+    {
+      "id": "REQ-20",
+      "text": "Enable opening a photo directly from a short link by detecting the short-code parameter on initial page load and automatically opening the corresponding photo in the existing photo viewer dialog.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-6"
+        ],
+        "quotes": [
+          "Can I shorten link length"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When the app loads with a URL containing \"#s=<shortCode>\", the app resolves the short code and opens the matching photo in the existing PhotoViewerDialog without requiring authentication.",
+        "If the short code is invalid or cannot be resolved, show an English, user-friendly message (and do not crash).",
+        "After resolving/handling the short-code parameter, normal navigation and gallery browsing continue to work as before."
       ]
     }
   ],
   "constraints": [
-    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
-    "Respect the existing single-page layout in frontend/src/App.tsx (do not remove upload/gallery functionality).",
-    "Do not route static hero images through the backend; keep them in frontend/public/assets/generated."
+    "Do not rely on external URL shortener services or any third-party APIs.",
+    "Do not require custom domain configuration or DNS changes to implement this; implement link shortening entirely within the existing canister + frontend.",
+    "Preserve existing public gallery browsing behavior and existing owner-only upload restrictions.",
+    "Keep all Motoko logic in the single backend/main.mo actor; add migration logic only if needed by existing stable state constraints."
   ],
   "nonGoals": [
-    "Adding albums, categories, or new gallery features.",
-    "Changing backend photo storage APIs or data schema.",
-    "Adding third-party authentication providers beyond Internet Identity."
+    "Setting up a custom domain for the canister (DNS/registrar configuration).",
+    "Integrating with commercial link shorteners (Bitly, Rebrandly, etc.).",
+    "Adding social sharing integrations (Facebook/Twitter/Instagram APIs)."
   ],
   "imageRequirements": {
     "required": [],
-    "edits": [
-      "Convert the existing hero background to an autumn sunset with subtle falling leaves motif and warm grain (hero-collage-bg.dim_1600x900.png > hero-collage-bg.dim_1600x900.png)"
-    ]
+    "edits": []
   },
   "userProfileUpdate": {
     "goalsToAdd": [],
     "goalsToRemove": [],
-    "preferencesToAdd": [
-      "Prefer a warm autumn-sunset visual theme (falling leaves at sunset) for the homepage."
-    ],
+    "preferencesToAdd": [],
     "preferencesToRemove": [],
     "miscToAdd": [],
     "miscToRemove": [],

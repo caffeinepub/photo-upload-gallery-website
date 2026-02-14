@@ -1,5 +1,6 @@
 import { Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { InternetIdentityButton } from '../auth/InternetIdentityButton';
 
 export function LandingHeader() {
   const scrollToSection = (sectionId: string) => {
@@ -22,11 +23,12 @@ export function LandingHeader() {
             </div>
           </div>
           
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="flex items-center gap-2">
             <Button
               variant="ghost"
               size="sm"
               onClick={() => scrollToSection('upload-section')}
+              className="hidden sm:inline-flex"
             >
               Upload
             </Button>
@@ -34,9 +36,11 @@ export function LandingHeader() {
               variant="ghost"
               size="sm"
               onClick={() => scrollToSection('gallery-section')}
+              className="hidden sm:inline-flex"
             >
               Gallery
             </Button>
+            <InternetIdentityButton />
           </nav>
         </div>
       </div>

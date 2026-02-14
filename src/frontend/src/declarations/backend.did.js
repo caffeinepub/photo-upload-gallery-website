@@ -20,6 +20,15 @@ export const _CaffeineStorageRefillResult = IDL.Record({
   'topped_up_amount' : IDL.Opt(IDL.Nat),
 });
 export const ExternalBlob = IDL.Vec(IDL.Nat8);
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
+export const UserProfile = IDL.Record({
+  'name' : IDL.Text,
+  'email' : IDL.Opt(IDL.Text),
+});
 export const PhotoMetadata = IDL.Record({
   'id' : IDL.Text,
   'contentType' : IDL.Text,
@@ -55,13 +64,33 @@ export const idlService = IDL.Service({
       [],
     ),
   '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'addPhoto' : IDL.Func(
       [IDL.Text, IDL.Text, IDL.Text, IDL.Int, ExternalBlob],
       [],
       [],
     ),
+  'addShortLink' : IDL.Func([IDL.Text, IDL.Text], [], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'canUpload' : IDL.Func([], [IDL.Bool], ['query']),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getGalleryStats' : IDL.Func([], [IDL.Nat, IDL.Nat], ['query']),
   'getPhoto' : IDL.Func([IDL.Text], [IDL.Opt(PhotoMetadata)], ['query']),
+  'getPhotoByShortCode' : IDL.Func(
+      [IDL.Text],
+      [IDL.Opt(PhotoMetadata)],
+      ['query'],
+    ),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'listPhotos' : IDL.Func([], [IDL.Vec(PhotoMetadata)], ['query']),
+  'resolveShortLink' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], ['query']),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
 });
 
 export const idlInitArgs = [];
@@ -79,6 +108,15 @@ export const idlFactory = ({ IDL }) => {
     'topped_up_amount' : IDL.Opt(IDL.Nat),
   });
   const ExternalBlob = IDL.Vec(IDL.Nat8);
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
+  const UserProfile = IDL.Record({
+    'name' : IDL.Text,
+    'email' : IDL.Opt(IDL.Text),
+  });
   const PhotoMetadata = IDL.Record({
     'id' : IDL.Text,
     'contentType' : IDL.Text,
@@ -114,13 +152,33 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'addPhoto' : IDL.Func(
         [IDL.Text, IDL.Text, IDL.Text, IDL.Int, ExternalBlob],
         [],
         [],
       ),
+    'addShortLink' : IDL.Func([IDL.Text, IDL.Text], [], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'canUpload' : IDL.Func([], [IDL.Bool], ['query']),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getGalleryStats' : IDL.Func([], [IDL.Nat, IDL.Nat], ['query']),
     'getPhoto' : IDL.Func([IDL.Text], [IDL.Opt(PhotoMetadata)], ['query']),
+    'getPhotoByShortCode' : IDL.Func(
+        [IDL.Text],
+        [IDL.Opt(PhotoMetadata)],
+        ['query'],
+      ),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'listPhotos' : IDL.Func([], [IDL.Vec(PhotoMetadata)], ['query']),
+    'resolveShortLink' : IDL.Func([IDL.Text], [IDL.Opt(IDL.Text)], ['query']),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   });
 };
 

@@ -1,78 +1,58 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Warm autumn-sunset theme refresh for landing page (no behavior changes)",
+  "title": "In-app short share links for photos (frontend)",
   "requirements": [
     {
-      "id": "REQ-12",
-      "summary": "Apply a cohesive warm autumn-sunset color system and matching surfaces/borders/accents across the existing homepage sections (header, highlights, upload, gallery, dialogs, footer) without changing functionality.",
+      "id": "REQ-19",
+      "summary": "Add a \"Copy share link\" control in the photo viewer that obtains a short code (admin-only) and copies an \"<origin>/#s=<shortCode>\" URL with clear English success/error messaging.",
       "acceptanceCriteria": [
-        "No backend changes are required to achieve the theme update.",
-        "The overall app color system reads as warm autumn sunset (no blue/purple-forward palette).",
-        "Buttons, cards, alerts, borders, and hover states remain accessible with sufficient contrast in both light and dark mode.",
-        "Existing page structure and behaviors remain intact: header navigation scroll, hero CTAs scroll, upload flow, gallery list, and photo viewer dialog all still work."
+        "In the photo viewer dialog, a visible control labeled \"Copy share link\" is available when a photo is open.",
+        "Clicking the control requests/obtains a short code for that photo (only if the current user is authorized to do so) and copies a URL formatted like \"<origin>/#s=<shortCode>\" to the clipboard.",
+        "After copying, the UI shows an English confirmation message (e.g., \"Link copied to clipboard.\"); if copying fails, show an English error message.",
+        "If the user is not authorized to create short links, the UI does not offer the action (or it is disabled with an English explanation), and the rest of the viewer continues to work normally."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/backend.d.ts",
           "operation": "modify",
-          "description": "Retune the global OKLCH design tokens to a cohesive warm autumn-sunset palette (amber/orange/copper/burgundy) for light and dark mode (background/card/muted/border/accent/ring/chart tokens), ensuring contrast remains accessible and removing any blue/purple-forward chart/accent hues. Verify the component's usage instructions before implementing."
+          "description": "Update the frontend backendInterface typings to include the admin-only backend capability used to create (or retrieve) a short code for a given photo ID, returning the short code as a string. Keep existing public resolution methods typed for unauthenticated use."
         },
         {
-          "path": "frontend/index.css",
-          "operation": "modify",
-          "description": "Align root-level Tailwind base tokens (if used by the project build) with the same warm autumn-sunset palette to avoid mismatched surfaces/borders between entry styling layers. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Adjust landing page section wrapper and footer surface/border utility classes to better express the warm autumn theme (surfaces, borders, subtle tints) while keeping all structure and behaviors unchanged. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/landing/LandingHeader.tsx",
-          "operation": "modify",
-          "description": "Update header surface, border, and accent treatments (sticky background tint, icon badge surface, hover states) to match the autumn-sunset theme while preserving existing smooth-scroll navigation behavior. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/landing/HighlightsSection.tsx",
-          "operation": "modify",
-          "description": "Update highlights section background tint and card styling (surface translucency, borders, icon badge accents) to match the warm palette while keeping content and layout unchanged. Uses existing shadcn-ui Card components—verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/photos/PhotoUploadForm.tsx",
-          "operation": "modify",
-          "description": "Retheme upload card, dropzone border/hover states, progress, and success/error alert surfaces to warm autumn tones without altering upload logic or validation. Uses existing shadcn-ui components (Card/Button/Alert/Progress)—verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/components/photos/PhotoGallery.tsx",
-          "operation": "modify",
-          "description": "Update gallery tile hover shadows/overlays and empty-state surfaces to warm sunset styling while preserving image loading, click-to-view behavior, and existing states (loading/error/empty). Uses existing shadcn-ui Card/Skeleton/Alert—verify the component's usage instructions before implementing."
+          "path": "frontend/src/hooks/useShortLinks.ts",
+          "operation": "create",
+          "description": "Create React Query hooks for short-link actions: (1) an admin-only mutation to obtain a short code for a photo ID via the backend capability and (2) a query/helper to resolve short codes when needed. Ensure authorization failures are surfaced as user-friendly English errors in the UI."
         },
         {
           "path": "frontend/src/components/photos/PhotoViewerDialog.tsx",
           "operation": "modify",
-          "description": "Update dialog content surface, border, and muted areas to match the warm autumn palette while preserving dialog behavior, scroll area behavior, and displayed metadata. Uses existing shadcn-ui Dialog/ScrollArea—verify the component's usage instructions before implementing."
+          "description": "Add a \"Copy share link\" action within the existing PhotoViewerDialog layout. Use the authorization system to determine if the current caller is admin (e.g., via existing backend role checks) and only show/enable the action when authorized. On click, call the short-link hook to obtain the short code, build the URL using window.location.origin + '/#s=' + shortCode, copy via the Clipboard API, and display clear English success/error feedback. Use existing shadcn-ui UI components already used elsewhere (e.g., Button/Alert) for consistent styling; verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-13",
-      "summary": "Update hero styling (overlays/gradients/text emphasis) to a warm sunset with subtle drifting-leaves feel, keeping CTA smooth-scroll behavior unchanged.",
+      "id": "REQ-20",
+      "summary": "On initial load, detect \"#s=<shortCode>\" in the URL, resolve it publicly, and open the corresponding photo in the existing PhotoViewerDialog with friendly English error handling.",
       "acceptanceCriteria": [
-        "Hero background overlay and gradients are updated to warm sunset tones (e.g., amber-to-burgundy) and do not wash out the headline/CTAs.",
-        "Hero headline, subheadline, and CTA buttons remain readable on common screen sizes.",
-        "CTA buttons still smooth-scroll to #upload-section and #gallery-section as they do currently."
+        "When the app loads with a URL containing \"#s=<shortCode>\", the app resolves the short code and opens the matching photo in the existing PhotoViewerDialog without requiring authentication.",
+        "If the short code is invalid or cannot be resolved, show an English, user-friendly message (and do not crash).",
+        "After resolving/handling the short-code parameter, normal navigation and gallery browsing continue to work as before."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/generated/hero-collage-bg.dim_1600x900.png",
+          "path": "frontend/src/utils/urlParams.ts",
           "operation": "modify",
-          "description": "Replace/edit the existing hero background image to an autumn sunset scene with a subtle falling leaves motif and warm grain, keeping the same filename and dimensions: frontend/public/assets/generated/hero-collage-bg.dim_1600x900.png."
+          "description": "Extend URL utilities to correctly read hash-fragment parameters in the \"#key=value\" form (not only \"#/?...\"), specifically supporting \"#s=<shortCode>\". Add a safe utility to clear/remove the processed \"s\" parameter from the hash after handling to preserve normal navigation behavior."
         },
         {
-          "path": "frontend/src/components/landing/HeroSection.tsx",
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Update hero overlay layering and gradients to warm amber/orange/copper/burgundy tones, tune headline emphasis color to fit the theme, and ensure CTA buttons remain readable and keep their existing smooth-scroll handlers unchanged. Uses existing shadcn-ui Button component—verify the component's usage instructions before implementing."
+          "description": "Wire short-link opening into the app lifecycle: on initial load (and when the actor becomes available), detect \"#s\" from the hash, resolve it using the public backend capability, fetch the matching photo metadata if needed, and set selectedPhoto to open the existing PhotoViewerDialog. If resolution fails, display an English, user-friendly message (using existing UI primitives already present in the app). Ensure the parameter is cleared after handling so normal browsing continues unaffected."
+        },
+        {
+          "path": "frontend/src/hooks/useShortLinks.ts",
+          "operation": "modify",
+          "description": "Add/adjust a public resolution helper used by App.tsx to resolve a short code to a photo (or photo ID), designed to work with the anonymous actor (no authentication) and to return a clear not-found state for invalid codes."
         }
       ]
     }

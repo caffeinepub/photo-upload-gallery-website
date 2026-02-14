@@ -1,14 +1,18 @@
 {
-  "frontend/src/App.tsx": "Main application component restructured as a landing page with hero, highlights, upload section, gallery section, and footer while preserving all existing functionality.",
+  "frontend/src/App.tsx": "Main application component with landing page structure, public gallery access, owner-only upload UI, and automatic short link resolution that opens shared photos from URL hash parameters.",
   "frontend/src/hooks/usePhotos.ts": "Custom React Query hooks for photo operations (list, upload) with file validation helpers, proper TypeScript type casting for Uint8Array, and cache invalidation logic.",
-  "frontend/src/components/photos/PhotoUploadForm.tsx": "Photo upload form component with warm autumn styling, drag-and-drop support, file preview, progress tracking, and success/error states.",
+  "frontend/src/components/photos/PhotoUploadForm.tsx": "Photo upload form component with drag-and-drop support, file preview, progress tracking, and enhanced error handling that displays user-friendly authorization error messages.",
   "frontend/src/components/photos/PhotoGallery.tsx": "Responsive photo gallery grid component with warm autumn styling, loading skeletons, empty state, error handling, and clickable photo tiles.",
-  "frontend/src/components/photos/PhotoViewerDialog.tsx": "Modal dialog component for viewing full-size photos with warm autumn styling and metadata display (filename, upload date, content type).",
+  "frontend/src/components/photos/PhotoViewerDialog.tsx": "Modal dialog component for viewing full-size photos with metadata display, and an admin-only \"Copy share link\" button that creates and copies shortened share URLs with success/error feedback.",
   "frontend/src/index.css": "Global styles with warm autumn-sunset OKLCH color system (amber, orange, copper, burgundy tones) for light and dark modes, plus smooth scroll behavior.",
   "frontend/tailwind.config.js": "Tailwind configuration with autumn-sunset color tokens, warm shadow utilities, and typography settings for the photography gallery theme.",
   "frontend/src/lib/utils.ts": "Utility function for merging Tailwind CSS classes using clsx and tailwind-merge.",
   "frontend/index.html": "Updated HTML document with polished landing-page title and meta description for the photo gallery.",
-  "frontend/src/components/landing/LandingHeader.tsx": "Compact sticky header component with warm autumn styling, branding, and navigation links to Upload and Gallery sections.",
+  "frontend/src/components/landing/LandingHeader.tsx": "Sticky header component with branding, navigation links to Upload and Gallery sections, and the Internet Identity authentication button.",
   "frontend/src/components/landing/HeroSection.tsx": "Hero section with autumn sunset background image, warm gradient overlays, headline with amber accent, and smooth-scroll CTAs.",
-  "frontend/src/components/landing/HighlightsSection.tsx": "Informational section with three feature cards styled in warm autumn tones, highlighting upload, gallery, and memory preservation capabilities."
+  "frontend/src/components/landing/HighlightsSection.tsx": "Informational section with three feature cards styled in warm autumn tones, highlighting upload, gallery, and memory preservation capabilities.",
+  "frontend/src/hooks/useUploadAuthorization.ts": "React Query hook that checks if the current caller is authorized to upload photos by calling the backend canUpload() method, with proper loading states and actor dependency handling.",
+  "frontend/src/components/auth/InternetIdentityButton.tsx": "Authentication button component that provides sign-in/sign-out functionality using Internet Identity, with proper state management and query cache clearing on logout.",
+  "frontend/src/utils/urlParams.ts": "Utility functions for reading, setting, and removing hash-fragment parameters in the URL format #key=value, with support for preserving normal hash routing behavior, plus a getSecretParameter function for handling sensitive URL parameters with sessionStorage persistence.",
+  "frontend/src/hooks/useShortLinks.ts": "React Query hooks for short link operations including creating short codes for photos (admin-only) and publicly resolving short codes to photos with user-friendly error handling."
 }

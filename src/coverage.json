@@ -1,69 +1,69 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-14T05:49:30.848Z",
+  "generatedAt": "2026-02-14T06:10:28.638Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
+    "total": 3,
     "implemented": 2,
     "items": [
       {
-        "id": "REQ-12",
-        "summary": "Update the homepage visual theme to evoke “falling autumn leaves, sunset time” using a cohesive warm palette (amber/orange/copper/burgundy) and matching surfaces, borders, and accents across the landing header, hero, highlights, upload, gallery, dialogs, and footer while keeping all existing functionality unchanged.",
+        "id": "REQ-18",
+        "summary": "Add backend support for short photo links by storing and resolving short codes that map to existing photo IDs.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-19",
+        "summary": "Add a “Copy share link” action to the photo viewer that generates a short URL using the current site origin plus a short-code parameter and copies it to the clipboard, showing a clear success/error message in English.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/index.css",
-          "frontend/src/App.tsx",
-          "frontend/src/components/landing/LandingHeader.tsx",
-          "frontend/src/components/landing/HighlightsSection.tsx",
-          "frontend/src/components/photos/PhotoUploadForm.tsx",
-          "frontend/src/components/photos/PhotoGallery.tsx",
+          "frontend/src/backend.d.ts",
+          "frontend/src/hooks/useShortLinks.ts",
           "frontend/src/components/photos/PhotoViewerDialog.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/App.tsx",
-          "frontend/src/components/landing/LandingHeader.tsx",
-          "frontend/src/components/landing/HighlightsSection.tsx",
-          "frontend/src/components/photos/PhotoUploadForm.tsx",
-          "frontend/src/components/photos/PhotoGallery.tsx",
+          "frontend/src/backend.d.ts",
+          "frontend/src/hooks/useShortLinks.ts",
           "frontend/src/components/photos/PhotoViewerDialog.tsx"
         ]
       },
       {
-        "id": "REQ-13",
-        "summary": "Update the hero section styling to match the autumn-sunset theme by adjusting overlays/gradients and any hero text emphasis colors so the background and content feel like a warm sunset scene with drifting leaves, without changing the hero’s existing CTA behavior.",
+        "id": "REQ-20",
+        "summary": "Enable opening a photo directly from a short link by detecting the short-code parameter on initial page load and automatically opening the corresponding photo in the existing photo viewer dialog.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/hero-collage-bg.dim_1600x900.png",
-          "frontend/src/components/landing/HeroSection.tsx"
+          "frontend/src/utils/urlParams.ts",
+          "frontend/src/App.tsx",
+          "frontend/src/hooks/useShortLinks.ts"
         ],
         "matchedFiles": [
-          "frontend/public/assets/generated/hero-collage-bg.dim_1600x900.png",
-          "frontend/src/components/landing/HeroSection.tsx"
+          "frontend/src/utils/urlParams.ts",
+          "frontend/src/App.tsx",
+          "frontend/src/hooks/useShortLinks.ts"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/public/assets/generated/hero-collage-bg.dim_1600x900.png",
     "frontend/src/App.tsx",
-    "frontend/src/components/landing/HeroSection.tsx",
-    "frontend/src/components/landing/HighlightsSection.tsx",
-    "frontend/src/components/landing/LandingHeader.tsx",
-    "frontend/src/components/photos/PhotoGallery.tsx",
-    "frontend/src/components/photos/PhotoUploadForm.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
     "frontend/src/components/photos/PhotoViewerDialog.tsx",
-    "frontend/src/index.css",
-    "frontend/tailwind.config.js",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useShortLinks.ts",
+    "frontend/src/utils/urlParams.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",
