@@ -1,0 +1,80 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Warm autumn-sunset theme refresh for landing page (no behavior changes)",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "summary": "Apply a cohesive warm autumn-sunset color system and matching surfaces/borders/accents across the existing homepage sections (header, highlights, upload, gallery, dialogs, footer) without changing functionality.",
+      "acceptanceCriteria": [
+        "No backend changes are required to achieve the theme update.",
+        "The overall app color system reads as warm autumn sunset (no blue/purple-forward palette).",
+        "Buttons, cards, alerts, borders, and hover states remain accessible with sufficient contrast in both light and dark mode.",
+        "Existing page structure and behaviors remain intact: header navigation scroll, hero CTAs scroll, upload flow, gallery list, and photo viewer dialog all still work."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Retune the global OKLCH design tokens to a cohesive warm autumn-sunset palette (amber/orange/copper/burgundy) for light and dark mode (background/card/muted/border/accent/ring/chart tokens), ensuring contrast remains accessible and removing any blue/purple-forward chart/accent hues. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/index.css",
+          "operation": "modify",
+          "description": "Align root-level Tailwind base tokens (if used by the project build) with the same warm autumn-sunset palette to avoid mismatched surfaces/borders between entry styling layers. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Adjust landing page section wrapper and footer surface/border utility classes to better express the warm autumn theme (surfaces, borders, subtle tints) while keeping all structure and behaviors unchanged. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/landing/LandingHeader.tsx",
+          "operation": "modify",
+          "description": "Update header surface, border, and accent treatments (sticky background tint, icon badge surface, hover states) to match the autumn-sunset theme while preserving existing smooth-scroll navigation behavior. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/landing/HighlightsSection.tsx",
+          "operation": "modify",
+          "description": "Update highlights section background tint and card styling (surface translucency, borders, icon badge accents) to match the warm palette while keeping content and layout unchanged. Uses existing shadcn-ui Card components—verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/photos/PhotoUploadForm.tsx",
+          "operation": "modify",
+          "description": "Retheme upload card, dropzone border/hover states, progress, and success/error alert surfaces to warm autumn tones without altering upload logic or validation. Uses existing shadcn-ui components (Card/Button/Alert/Progress)—verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/photos/PhotoGallery.tsx",
+          "operation": "modify",
+          "description": "Update gallery tile hover shadows/overlays and empty-state surfaces to warm sunset styling while preserving image loading, click-to-view behavior, and existing states (loading/error/empty). Uses existing shadcn-ui Card/Skeleton/Alert—verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/photos/PhotoViewerDialog.tsx",
+          "operation": "modify",
+          "description": "Update dialog content surface, border, and muted areas to match the warm autumn palette while preserving dialog behavior, scroll area behavior, and displayed metadata. Uses existing shadcn-ui Dialog/ScrollArea—verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Update hero styling (overlays/gradients/text emphasis) to a warm sunset with subtle drifting-leaves feel, keeping CTA smooth-scroll behavior unchanged.",
+      "acceptanceCriteria": [
+        "Hero background overlay and gradients are updated to warm sunset tones (e.g., amber-to-burgundy) and do not wash out the headline/CTAs.",
+        "Hero headline, subheadline, and CTA buttons remain readable on common screen sizes.",
+        "CTA buttons still smooth-scroll to #upload-section and #gallery-section as they do currently."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/hero-collage-bg.dim_1600x900.png",
+          "operation": "modify",
+          "description": "Replace/edit the existing hero background image to an autumn sunset scene with a subtle falling leaves motif and warm grain, keeping the same filename and dimensions: frontend/public/assets/generated/hero-collage-bg.dim_1600x900.png."
+        },
+        {
+          "path": "frontend/src/components/landing/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Update hero overlay layering and gradients to warm amber/orange/copper/burgundy tones, tune headline emphasis color to fit the theme, and ensure CTA buttons remain readable and keep their existing smooth-scroll handlers unchanged. Uses existing shadcn-ui Button component—verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Website for uploading and displaying photographs (simple photo gallery).",
+  "architectural_notes": [
+    "Homepage/landing visual direction: warm autumn sunset vibe (falling leaves), consistent across hero/background and overall theme."
+  ],
+  "known_issues": [
+    "Build failed due to a configuration problem (Caffeine build/config error)."
+  ],
+  "isFixRequest": false,
+  "imageRequirements": "## Edit Images\n- Convert the existing hero background to an autumn sunset with subtle falling leaves motif and warm grain (hero-collage-bg.dim_1600x900.png > hero-collage-bg.dim_1600x900.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-frontend-page-that-allows-users-to-upload-photographs-from-their-device-and-submit-them-to-the-backend-including-client-side-validation-for-common-image-types-e-g-jpeg-png-webp-and-a-clear-success-error-message-in-english",
+      "title": "Create a frontend page that allows users to upload photographs from their device and submit them to the backend, including client-side validation for common image types (e.g., JPEG/PNG/WebP) and a clear success/error message in English.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-responsive-photo-gallery-ui-that-displays-uploaded-photographs-in-a-clean-grid-layout-loading-photo-metadata-from-the-backend-and-rendering-the-images-include-a-basic-photo-viewer-interaction-e-g-click-to-open-a-larger-view",
+      "title": "Create a responsive photo gallery UI that displays uploaded photographs in a clean grid layout, loading photo metadata from the backend and rendering the images. Include a basic photo viewer interaction (e.g., click to open a larger view).",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-wire-frontend-data-fetching-and-mutations-using-react-query-upload-mutation-list-query-and-ensure-cache-invalidation-refresh-after-uploads-so-the-gallery-stays-consistent",
+      "title": "Wire frontend data fetching and mutations using React Query (upload mutation + list query) and ensure cache invalidation/refresh after uploads so the gallery stays consistent.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-coherent-distinct-visual-theme-colors-typography-spacing-and-component-styling-across-the-app-suitable-for-a-photography-gallery-do-not-use-a-blue-purple-theme-keep-the-design-consistent-across-upload-and-gallery-views",
+      "title": "Apply a coherent, distinct visual theme (colors, typography, spacing, and component styling) across the app suitable for a photography gallery. Do not use a blue+purple theme. Keep the design consistent across upload and gallery views.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-the-current-single-page-home-layout-header-upload-gallery-into-a-more-landing-page-style-experience-aimed-at-first-time-visitors-coming-from-instagram-while-keeping-all-existing-upload-and-gallery-functionality-available-on-the-same-page",
+      "title": "Redesign the current single-page home layout (header + upload + gallery) into a more landing-page style experience aimed at first-time visitors coming from Instagram, while keeping all existing upload and gallery functionality available on the same page.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-clear-calls-to-action-in-the-hero-section-that-guide-visitors-to-the-primary-actions-on-the-page-e-g-scrolling-jumping-to-the-upload-section-and-or-the-gallery-section",
+      "title": "Add clear calls-to-action in the hero section that guide visitors to the primary actions on the page (e.g., scrolling/jumping to the Upload section and/or the Gallery section).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-header-content-layout-to-better-match-a-landing-page-style-e-g-compact-brand-area-plus-simple-navigation-links-to-page-sections-like-upload-and-gallery-without-removing-existing-branding",
+      "title": "Update the header content/layout to better match a landing-page style (e.g., compact brand area plus simple navigation links to page sections like “Upload” and “Gallery”), without removing existing branding.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-at-least-one-additional-landing-page-section-between-the-hero-and-the-app-content-that-improves-first-impression-e-g-a-short-what-you-ll-find-here-highlights-section-using-english-user-facing-text",
+      "title": "Add at least one additional landing-page section between the hero and the app content that improves first impression (e.g., a short “What you’ll find here”/highlights section) using English user-facing text.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-incorporate-a-generated-static-hero-background-illustration-image-into-the-landing-hero-section-and-store-it-in-frontend-public-assets-generated-do-not-serve-it-from-the-backend",
+      "title": "Incorporate a generated static hero background/illustration image into the landing hero section and store it in frontend/public/assets/generated (do not serve it from the backend).",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-base-html-metadata-to-match-the-landing-page-positioning-title-and-optionally-a-meta-description-while-keeping-it-generic-no-references-to-instagram-specific-account-details",
+      "title": "Update the base HTML metadata to match the landing-page positioning (title and optionally a meta description) while keeping it generic (no references to Instagram-specific account details).",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-homepage-visual-theme-to-evoke-falling-autumn-leaves-sunset-time-using-a-cohesive-warm-palette-amber-orange-copper-burgundy-and-matching-surfaces-borders-and-accents-across-the-landing-header-hero-highlights-upload-gallery-dialogs-and-footer-while-keeping-all-existing-functionality-unchanged",
+      "title": "Update the homepage visual theme to evoke “falling autumn leaves, sunset time” using a cohesive warm palette (amber/orange/copper/burgundy) and matching surfaces, borders, and accents across the landing header, hero, highlights, upload, gallery, dialogs, and footer while keeping all existing functionality unchanged.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-hero-section-styling-to-match-the-autumn-sunset-theme-by-adjusting-overlays-gradients-and-any-hero-text-emphasis-colors-so-the-background-and-content-feel-like-a-warm-sunset-scene-with-drifting-leaves-without-changing-the-hero-s-existing-cta-behavior",
+      "title": "Update the hero section styling to match the autumn-sunset theme by adjusting overlays/gradients and any hero text emphasis colors so the background and content feel like a warm sunset scene with drifting leaves, without changing the hero’s existing CTA behavior.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Build a website that lets users upload photographs and display them in a clean gallery layout.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement backend photo storage and retrieval in the single Motoko main actor, supporting: (1) uploading a photograph (raw bytes) with basic metadata (filename, content type, upload timestamp), (2) listing uploaded photographs (metadata only) in reverse-chronological order, and (3) fetching a photograph by id (bytes + content type).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Redesign the homepage to be more landing-page style for visitors coming from Instagram (more polished intro/hero section, clearer call-to-action, improved first impression).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Update the landing/homepage visual theme to evoke “falling autumn leaves at sunset time” (warm amber/orange palette and matching hero styling/background).",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Photo upload + gallery website",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

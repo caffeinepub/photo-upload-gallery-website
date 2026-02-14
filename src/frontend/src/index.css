@@ -1,0 +1,86 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+        /* Warm autumn sunset palette - light mode */
+        --background: 0.98 0.01 60;
+        --foreground: 0.25 0.02 40;
+        --card: 0.99 0.01 55;
+        --card-foreground: 0.25 0.02 40;
+        --popover: 0.99 0.01 55;
+        --popover-foreground: 0.25 0.02 40;
+        /* Warm amber-orange primary */
+        --primary: 0.30 0.03 45;
+        --primary-foreground: 0.98 0.01 60;
+        --secondary: 0.94 0.02 50;
+        --secondary-foreground: 0.30 0.03 45;
+        --muted: 0.95 0.02 55;
+        --muted-foreground: 0.50 0.03 45;
+        /* Sunset amber accent */
+        --accent: 0.72 0.16 55;
+        --accent-foreground: 0.20 0.02 40;
+        --destructive: 0.55 0.20 25;
+        --destructive-foreground: 0.98 0.01 60;
+        --border: 0.88 0.02 50;
+        --input: 0.92 0.02 50;
+        --ring: 0.72 0.16 55;
+        /* Autumn chart colors: amber, copper, burgundy, rust, gold */
+        --chart-1: 0.68 0.18 50;
+        --chart-2: 0.58 0.14 35;
+        --chart-3: 0.48 0.16 15;
+        --chart-4: 0.62 0.15 45;
+        --chart-5: 0.75 0.14 65;
+    }
+
+    .dark {
+        /* Dark autumn sunset palette */
+        --background: 0.18 0.02 40;
+        --foreground: 0.95 0.01 55;
+        --card: 0.22 0.02 38;
+        --card-foreground: 0.95 0.01 55;
+        --popover: 0.24 0.02 38;
+        --popover-foreground: 0.95 0.01 55;
+        --primary: 0.85 0.01 55;
+        --primary-foreground: 0.22 0.02 38;
+        --secondary: 0.28 0.02 40;
+        --secondary-foreground: 0.95 0.01 55;
+        --muted: 0.28 0.02 42;
+        --muted-foreground: 0.65 0.03 48;
+        /* Warm glowing amber accent for dark mode */
+        --accent: 0.70 0.18 50;
+        --accent-foreground: 0.98 0.01 60;
+        --destructive: 0.58 0.18 20;
+        --destructive-foreground: 0.95 0.01 55;
+        --border: 0.32 0.02 40;
+        --input: 0.30 0.02 40;
+        --ring: 0.70 0.18 50;
+        /* Autumn chart colors for dark mode */
+        --chart-1: 0.68 0.18 50;
+        --chart-2: 0.58 0.14 35;
+        --chart-3: 0.48 0.16 15;
+        --chart-4: 0.62 0.15 45;
+        --chart-5: 0.75 0.14 65;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}

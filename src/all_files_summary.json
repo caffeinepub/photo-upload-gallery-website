@@ -1,0 +1,22 @@
+{
+  "backend/main.mo": "Motoko backend storing photo metadata and blob references with functions to add, list, and retrieve photos.",
+  "feature_evidence.json": "Feature evidence report listing UI theme updates and associated files, components, and test IDs.",
+  "frontend-file-summaries.txt": "Prewritten summaries describing various frontend components, styles, and utilities for the photo gallery app.",
+  "frontend/index.css": "Tailwind-based global styles defining OKLCH color variables and light/dark theme tokens.",
+  "frontend/index.html": "Base HTML document loading the React app with updated title and description.",
+  "frontend/src/App.tsx": "Main React app composing the landing layout, upload form, gallery, and photo viewer dialog.",
+  "frontend/src/components/landing/HeroSection.tsx": "Hero section with sunset-themed background, accented text, and buttons scrolling to upload or gallery.",
+  "frontend/src/components/landing/HighlightsSection.tsx": "Section showing three feature highlight cards with icons and autumn-themed styling.",
+  "frontend/src/components/landing/LandingHeader.tsx": "Sticky header with branding and navigation buttons that scroll to upload and gallery sections.",
+  "frontend/src/components/photos/PhotoGallery.tsx": "Photo gallery component handling loading, errors, empty state, and displaying clickable photo tiles.",
+  "frontend/src/components/photos/PhotoUploadForm.tsx": "UI component for selecting, previewing, and uploading photos with drag-and-drop, progress tracking, and error/success handling.",
+  "frontend/src/components/photos/PhotoViewerDialog.tsx": "Displays a modal dialog showing a selected photo with its metadata such as upload date and content type.",
+  "frontend/src/hooks/useActor.ts": "Creates and manages a backend actor tied to the user's identity and invalidates dependent queries when it changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides authentication state and actions using Internet Identity, persisting and loading identities via AuthClient.",
+  "frontend/src/hooks/usePhotos.ts": "React Query hooks for listing and uploading photos, including file validation, byte conversion, and backend upload logic.",
+  "frontend/src/index.css": "Defines Tailwind CSS base styles and theme variables for a warm light/dark color palette.",
+  "frontend/src/lib/utils.ts": "Utility function for merging Tailwind and conditional class names.",
+  "frontend/src/main.tsx": "App entry point setting up React Query and Internet Identity providers before rendering the application.",
+  "frontend/tailwind.config.js": "Tailwind configuration extending colors, typography, animations, and using several Tailwind plugins.",
+  "project_state.json": "Defines the project’s state, features, issues, and image requirements for a photo gallery website, including design notes and known build problems. Serves as a configuration and tracking document for features and visual direction."
+}

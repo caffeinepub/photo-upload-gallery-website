@@ -1,0 +1,14 @@
+{
+  "frontend/src/App.tsx": "Main application component restructured as a landing page with hero, highlights, upload section, gallery section, and footer while preserving all existing functionality.",
+  "frontend/src/hooks/usePhotos.ts": "Custom React Query hooks for photo operations (list, upload) with file validation helpers, proper TypeScript type casting for Uint8Array, and cache invalidation logic.",
+  "frontend/src/components/photos/PhotoUploadForm.tsx": "Photo upload form component with warm autumn styling, drag-and-drop support, file preview, progress tracking, and success/error states.",
+  "frontend/src/components/photos/PhotoGallery.tsx": "Responsive photo gallery grid component with warm autumn styling, loading skeletons, empty state, error handling, and clickable photo tiles.",
+  "frontend/src/components/photos/PhotoViewerDialog.tsx": "Modal dialog component for viewing full-size photos with warm autumn styling and metadata display (filename, upload date, content type).",
+  "frontend/src/index.css": "Global styles with warm autumn-sunset OKLCH color system (amber, orange, copper, burgundy tones) for light and dark modes, plus smooth scroll behavior.",
+  "frontend/tailwind.config.js": "Tailwind configuration with autumn-sunset color tokens, warm shadow utilities, and typography settings for the photography gallery theme.",
+  "frontend/src/lib/utils.ts": "Utility function for merging Tailwind CSS classes using clsx and tailwind-merge.",
+  "frontend/index.html": "Updated HTML document with polished landing-page title and meta description for the photo gallery.",
+  "frontend/src/components/landing/LandingHeader.tsx": "Compact sticky header component with warm autumn styling, branding, and navigation links to Upload and Gallery sections.",
+  "frontend/src/components/landing/HeroSection.tsx": "Hero section with autumn sunset background image, warm gradient overlays, headline with amber accent, and smooth-scroll CTAs.",
+  "frontend/src/components/landing/HighlightsSection.tsx": "Informational section with three feature cards styled in warm autumn tones, highlighting upload, gallery, and memory preservation capabilities."
+}

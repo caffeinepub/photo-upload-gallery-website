@@ -1,0 +1,49 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-homepage-visual-theme-to-evoke-falling-autumn-leaves-sunset-time-using-a-cohesive-warm-palette-amber-orange-copper-burgundy-and-matching-surfaces-borders-and-accents-across-the-landing-header-hero-highlights-upload-gallery-dialogs-and-footer-while-keeping-all-existing-functionality-unchanged",
+      "featureTitle": "Update the homepage visual theme to evoke “falling autumn leaves, sunset time” using a cohesive warm palette (amber/orange/copper/burgundy) and matching surfaces, borders, and accents across the landing header, hero, highlights, upload, gallery, dialogs, and footer while keeping all existing functionality unchanged.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/landing/HighlightsSection.tsx",
+        "frontend/src/components/landing/LandingHeader.tsx",
+        "frontend/src/components/photos/PhotoGallery.tsx",
+        "frontend/src/components/photos/PhotoUploadForm.tsx",
+        "frontend/src/components/photos/PhotoViewerDialog.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-12"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-hero-section-styling-to-match-the-autumn-sunset-theme-by-adjusting-overlays-gradients-and-any-hero-text-emphasis-colors-so-the-background-and-content-feel-like-a-warm-sunset-scene-with-drifting-leaves-without-changing-the-hero-s-existing-cta-behavior",
+      "featureTitle": "Update the hero section styling to match the autumn-sunset theme by adjusting overlays/gradients and any hero text emphasis colors so the background and content feel like a warm sunset scene with drifting leaves, without changing the hero’s existing CTA behavior.",
+      "files": [
+        "frontend/src/components/landing/HeroSection.tsx"
+      ],
+      "components": [
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-13"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

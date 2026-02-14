@@ -1,0 +1,72 @@
+{
+  "kind": "build_request",
+  "title": "Update landing page theme to falling autumn leaves at sunset",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-12",
+      "text": "Update the homepage visual theme to evoke “falling autumn leaves, sunset time” using a cohesive warm palette (amber/orange/copper/burgundy) and matching surfaces, borders, and accents across the landing header, hero, highlights, upload, gallery, dialogs, and footer while keeping all existing functionality unchanged.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Make the theme of the home page like “ falling of autumn leaves , sun set time “ kind of"
+        ]
+      },
+      "acceptanceCriteria": [
+        "No backend changes are required to achieve the theme update.",
+        "The overall app color system reads as warm autumn sunset (no blue/purple-forward palette).",
+        "Buttons, cards, alerts, borders, and hover states remain accessible with sufficient contrast in both light and dark mode.",
+        "Existing page structure and behaviors remain intact: header navigation scroll, hero CTAs scroll, upload flow, gallery list, and photo viewer dialog all still work."
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "text": "Update the hero section styling to match the autumn-sunset theme by adjusting overlays/gradients and any hero text emphasis colors so the background and content feel like a warm sunset scene with drifting leaves, without changing the hero’s existing CTA behavior.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Make the theme of the home page like “ falling of autumn leaves , sun set time “ kind of"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero background overlay and gradients are updated to warm sunset tones (e.g., amber-to-burgundy) and do not wash out the headline/CTAs.",
+        "Hero headline, subheadline, and CTA buttons remain readable on common screen sizes.",
+        "CTA buttons still smooth-scroll to #upload-section and #gallery-section as they do currently."
+      ]
+    }
+  ],
+  "constraints": [
+    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "Respect the existing single-page layout in frontend/src/App.tsx (do not remove upload/gallery functionality).",
+    "Do not route static hero images through the backend; keep them in frontend/public/assets/generated."
+  ],
+  "nonGoals": [
+    "Adding albums, categories, or new gallery features.",
+    "Changing backend photo storage APIs or data schema.",
+    "Adding third-party authentication providers beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": [
+      "Convert the existing hero background to an autumn sunset with subtle falling leaves motif and warm grain (hero-collage-bg.dim_1600x900.png > hero-collage-bg.dim_1600x900.png)"
+    ]
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "Prefer a warm autumn-sunset visual theme (falling leaves at sunset) for the homepage."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}
